@@ -1,0 +1,39 @@
+Monitoraggio Gas Camper
+
+Hardware : 
+
+1) display AZDelivery 1.77 pollici SPI TFT Display 128x160 Pixel ST7735 2.7V - 3.3V compatibile con Arduino
+2) ESP32 NodeMCU ESP32-WROOM-32 2.4 GHz WLAN WiFi Bluetooth Chip CP2102
+3) KY-016 FZ0455 Modulo LED RGB
+4) buzzer 
+5) sensore Mq_135 (Gas tossici )
+6) sensore Mq_7 ( monossido Co)
+7) batteria 9v o espandibile compreso partitore di tensione ottimale per scheda esp32
+8)  MP1584EN Mini Convertitore Buck Step-down, Ultra Piccolo 3A Regolabile Alimentatore Step-Down Module, Convertitore buck DC-DC da 4,5-28V a 0,8-20V . (per collegare display e sensori con voltaggio 5v
+9) resistenze (da consigliare ) 
+
+DESCRIZIONE :
+1) creare un app con flutter , per poter inviare e ricevere dati a esp32 via Bluetooth (Bluetooth serial quella piu funzionale )
+2) creare un menu principale  all'avvio dell'app con titolo Monitoraggio Gas Camper e con immagine (camper.jpg). All'interno del menu principale vari menu : 
+A) visualizzare in tempo reale valori numerici e grafico a barre dei sensori e livello batteria in tempo reale in base alla carica in percentuale con icona  piu realistica possibile , con livello di carica in base alla lettura reale (carica , media , bassa , critica ) .
+B) Pulsante Impostare soglie sensori. La possibilità di impostare le soglie dei sensori per attivare allarme " notifica e suono mp3 su smartphone e buzzer collegato a scheda esp32. con opzione aggiuntiva di salvare su app e su eeprom in scheda esp32.
+C) Pulsante calibrazione batteria . la possibilità di  calibrare l'offset  della batteria in base alla batteria che si utilizza , salvabile su app e su esp32.
+D) stato batteria . visualizzare logo batteria  con percentuale e tensione attuale. 
+E) pulsane visualizza grafico . creare un grafico delle soglie massime e minime rilevate.
+F) pulsante spegnimento display AZDelivery 1.77 pollici SPI TFT Display 128x160 Pixel ST7735 2.7V - 3.3V compatibile con Arduino . la possibilità di spegnere o accendere il display per evitare consumi della batteria. Con pulsante on e off e visualizzare lo stato salvato (se acceso display acceso ,se spento display spento ).
+G) tasto connetti . connessione via Bluetooth con scheda esp32 per ricevere e inviare dati 
+H) tasto disconnetti (solo se necessario o logico ) 
+
+Software : 
+1) Arduino IDE. Per programmare e creare uno sketch per esp32 utilizzare anche la funzione monitor seriale per visualizzare comandi eseguiti da app.
+2) Flutter integrato a visual studio code per creare app androide . 
+
+Funzionamento :
+All'accensione della scheda esp32 il sistema e "già funzionante" , in base ai livelli preimpostati dei sensori o salvati , si accende il led verde rgb . Sul display tft , si deve visualizzare un titolo , ed in altro a destra un logo con tacche del livello attualmente letto della batteria, sotto un grafico a barre con i valori descritti dei sensori  Monossido Co e Gas Tossici . In caso di preallarme , si accende il led blu rgb in modo lampeggiante , (70%) prima del livello massimo.
+Note: 
+1) In caso di allarme. Su display TFT: Si deve  accende il led rosso rgb ed interviene il buzzer collegato alla scheda esp32 , il display TFT fa visualizzare un messaggio di pericolo. Se i valori tornano sotto il livello ,si ritorna alla funzione normale . (led verde accesso , buzzer spento , grafico a barre livelli e logo batteria.
+2) in caso di allarme. Su smartphone : Un avviso con notifica , Allarme Gas con logo di pericolo e interviene anche allarme sonoro file (allarme.mp3) . Aggoingiamo un tasto in fondo allo schermo "DISATTIVA ALLARMI " . Se le soglie tornano normali , si torna la menu principale .
+
+Annotazioni grafiche : utilizziamo per l'app una grafica piu realistica e intuitiva possibile , sia per i tasti e per le barr grafiche. ombraggiature colori di sfondo ecc ecc .
+
+Annotazioni collegamenti hardware : descrivere con esattezza dove collegare i vari componenti DISPLAY , SENSOORI ECC ECC e i vari partitori di tensione con relative resistenze e schema. 
